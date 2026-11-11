@@ -136,16 +136,34 @@ Contents
    servers/index
    servers/companion-packages
    servers/abraflexi
+   servers/adb
+   servers/cc-token-saver
+   servers/coinbase
    servers/datovka
+   servers/email
    servers/filesystem
+   servers/googleoffice
    servers/graylog
    servers/groupoffice
+   servers/invokeai
    servers/librenms
+   servers/linkedin
+   servers/magento
    servers/mastodon
+   servers/ms-365
+   servers/multiflexi
+   servers/netbox
+   servers/nextcloud
+   servers/patreon
+   servers/raynet
+   servers/redmine
    servers/semaphore
    servers/subreg
+   servers/wakatime
+   servers/warden
    servers/wazuh
    servers/webdriver
+   servers/zabbix
 
 .. toctree::
    :maxdepth: 2

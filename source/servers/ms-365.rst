@@ -1,0 +1,51 @@
+mcp-server-ms-365
+=================
+
+An MCP server for **Microsoft 365** through the Graph API: mail, calendar and to-do tasks (upstream: ``Softeria/ms-365-mcp-server``). The binary keeps its upstream name. Companion package: ``mcprack-mcp-server-ms-365``. Binary: ``/usr/bin/ms-365-mcp-server``.
+
+.. code-block:: bash
+
+   sudo apt install mcprack-mcp-server-ms-365
+
+Configuration
+-------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 34 10 56
+
+   * - Variable
+     - Required
+     - Meaning
+   * - ``MS365_MCP_CLIENT_ID``
+     - no
+     - Client ID of your own Azure app registration; without it the default upstream app is used
+   * - ``MS365_MCP_TENANT_ID``
+     - no
+     - Tenant ID for your own app registration
+   * - ``MS365_MCP_CLIENT_SECRET``
+     - no
+     - Client secret of your own app registration (secret store)
+   * - ``MS365_MCP_CLOUD_TYPE``
+     - no
+     - Microsoft cloud environment
+   * - ``READ_ONLY``
+     - no
+     - Read-only is the default; ``READ_ONLY=false`` (or ``--no-read-only``) enables write tools
+
+Registration:
+
+.. code-block:: bash
+
+   sudo mcprack server show mcp-server-ms-365
+   sudo mcprack server edit mcp-server-ms-365 --add-secret-key <SECRET_VARIABLE>
+   sudo mcprack secret set mcp-server-ms-365 <SECRET_VARIABLE>
+
+Replace ``<SECRET_VARIABLE>`` with each secret variable from the table.
+
+Read-only behaviour: Read-only is the upstream default. Many more ``MS365_MCP_*`` variables exist; see the upstream README.
+
+Tools
+-----
+
+- Mail, calendar and to-do task tools over Microsoft Graph; write tools stay hidden until read-only mode is turned off.
