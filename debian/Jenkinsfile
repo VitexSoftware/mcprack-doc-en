@@ -5,7 +5,7 @@
 String[] distributions = [
     'debian:bookworm',
     'debian:trixie',
-    'debian:forky',
+    // 'debian:forky', // Disabled: unstable/research-only; re-enable once dependencies exist.
     // 'ubuntu:jammy', // Reason: TemplateNotFound('layout/default.html')
     'ubuntu:noble'
 ]
