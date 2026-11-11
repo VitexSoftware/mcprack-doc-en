@@ -22,9 +22,15 @@ the server appears in the catalog; remove it and the entry disappears
    * - :doc:`mcp-server-filesystem <filesystem>`
      - ``mcprack-mcp-server-filesystem``
      - Linux filesystem operations (10 tools)
+   * - :doc:`mcp-server-graylog <graylog>`
+     - ``mcprack-mcp-server-graylog``
+     - Graylog log management (bridge to built-in MCP, or 5 read-only REST tools)
    * - :doc:`mcp-server-groupoffice <groupoffice>`
      - ``mcprack-mcp-server-groupoffice``
      - GroupOffice groupware (82 tools)
+   * - :doc:`mcp-server-librenms <librenms>`
+     - ``mcprack-mcp-server-librenms``
+     - LibreNMS network monitoring (113 tools)
    * - :doc:`mcp-server-mastodon <mastodon>`
      - ``mcprack-mcp-server-mastodon``
      - Mastodon social network (54 tools)
@@ -34,6 +40,9 @@ the server appears in the catalog; remove it and the entry disappears
    * - :doc:`mcp-server-subreg <subreg>`
      - ``mcprack-mcp-server-subreg``
      - Subreg.cz domain registrar (21 tools)
+   * - :doc:`mcp-server-wazuh <wazuh>`
+     - ``mcprack-mcp-server-wazuh``
+     - Wazuh 5 security monitoring (12 tools)
    * - :doc:`mcp-server-webdriver <webdriver>`
      - ``mcprack-mcp-server-webdriver``
      - Firefox browser automation (43 tools)

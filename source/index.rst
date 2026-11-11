@@ -138,10 +138,13 @@ Contents
    servers/abraflexi
    servers/datovka
    servers/filesystem
+   servers/graylog
    servers/groupoffice
+   servers/librenms
    servers/mastodon
    servers/semaphore
    servers/subreg
+   servers/wazuh
    servers/webdriver
 
 .. toctree::

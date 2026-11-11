@@ -13,7 +13,7 @@ English documentation for [mcprack](https://github.com/VitexSoftware/mcprack) �
 - **Security** — authentication, two-factor authentication, fresh re-authentication, command and URL policies, the audit mirror, an internet-exposure checklist
 - **Client Tools** — `mcprack-client`, `mcprack-sync-claude`, `-cursor`, `-vscode`
 - **Automation** — the `vitexsoftware.mcprack` Ansible collection
-- **MCP Servers with a Companion** — AbraFlexi, Datovka, filesystem, GroupOffice, Mastodon, Semaphore, Subreg, WebDriver
+- **MCP Servers with a Companion** — AbraFlexi, Datovka, filesystem, Graylog, GroupOffice, LibreNMS, Mastodon, Semaphore, Subreg, Wazuh, WebDriver
 - **Reference** — configuration, CLI, REST API, client formats, troubleshooting
 - **Development** — packaging an MCP server with a companion, contributing
 
@@ -66,4 +66,4 @@ See [AGENTS.md](AGENTS.md). Key rules: English only; active voice; second person
 | [mcprack-sync-cursor](https://github.com/VitexSoftware/mcprack-sync-cursor) | Cursor sync |
 | [mcprack-sync-vscode](https://github.com/VitexSoftware/mcprack-sync-vscode) | VS Code / Copilot sync |
 | [mcprack-ansible-collection](https://github.com/VitexSoftware/mcprack-ansible-collection) | Ansible collection |
-| [mcp-server-abraflexi](https://github.com/VitexSoftware/mcp-server-abraflexi), [-datovka](https://github.com/VitexSoftware/mcp-server-datovka), [-filesystem](https://github.com/VitexSoftware/mcp-server-filesystem), [-groupoffice](https://github.com/VitexSoftware/mcp-server-groupoffice), [-mastodon](https://github.com/VitexSoftware/mcp-server-mastodon), [-semaphore](https://github.com/VitexSoftware/mcp-server-semaphore), [-subreg](https://github.com/VitexSoftware/mcp-server-subreg), [-webdriver](https://github.com/VitexSoftware/mcp-server-webdriver) | MCP servers with a mcprack companion package |
+| [mcp-server-abraflexi](https://github.com/VitexSoftware/mcp-server-abraflexi), [-datovka](https://github.com/VitexSoftware/mcp-server-datovka), [-filesystem](https://github.com/VitexSoftware/mcp-server-filesystem), [-graylog](https://github.com/VitexSoftware/mcp-server-graylog), [-groupoffice](https://github.com/VitexSoftware/mcp-server-groupoffice), [-librenms](https://github.com/VitexSoftware/mcp-server-librenms), [-mastodon](https://github.com/VitexSoftware/mcp-server-mastodon), [-semaphore](https://github.com/VitexSoftware/mcp-server-semaphore), [-subreg](https://github.com/VitexSoftware/mcp-server-subreg), [-wazuh](https://github.com/VitexSoftware/mcp-server-wazuh), [-webdriver](https://github.com/VitexSoftware/mcp-server-webdriver) | MCP servers with a mcprack companion package |
