@@ -1,0 +1,24 @@
+Source: mcprack-doc
+Section: doc
+Priority: optional
+Maintainer: "Vítězslav Dvořák" <info@vitexsoftware.cz>
+Build-Depends: debhelper-compat (= 13), python3-sphinx, python3-shibuya-sphinx-theme, dh-apache2
+Standards-Version: 4.6.2
+Homepage: https://github.com/VitexSoftware/mcprack-doc-en
+Vcs-Git: https://github.com/VitexSoftware/mcprack-doc-en.git
+Vcs-Browser: https://github.com/VitexSoftware/mcprack-doc-en
+
+Package: mcprack-doc
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Recommends: apache2 | nginx
+Suggests: mcprack
+Architecture: all
+Description: mcprack HTML documentation
+ Sphinx-generated HTML documentation for mcprack, the MCP server catalog and
+ client-configuration portal, its client tools (mcprack-client and the
+ mcprack-sync-* tools), the Ansible collection and the MCP servers that ship a
+ mcprack companion package.
+ .
+ An Apache2 configuration snippet is enabled automatically on installation.
+ An Nginx configuration snippet is installed to /usr/share/doc/mcprack-doc/.

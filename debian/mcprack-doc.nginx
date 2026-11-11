@@ -1,0 +1,5 @@
+location /mcprack-doc/ {
+    alias /usr/share/doc/mcprack-doc/html/;
+    index index.html;
+    try_files $uri $uri/ =404;
+}

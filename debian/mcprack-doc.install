@@ -1,0 +1,4 @@
+build/html/* /usr/share/doc/mcprack-doc/html
+debian/mcprack-doc.nginx /usr/share/doc/mcprack-doc
+mcprack-doc.svg usr/share/icons/hicolor/scalable/apps/
+debian/cz.vitexsoftware.mcprack_doc.metainfo.xml usr/share/metainfo/

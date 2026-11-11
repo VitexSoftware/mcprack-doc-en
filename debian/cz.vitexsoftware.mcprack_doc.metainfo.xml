@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+  <id>cz.vitexsoftware.mcprack_doc</id>
+  <icon type="stock">mcprack-doc</icon>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <name>mcprack Documentation</name>
+  <summary>HTML documentation for mcprack</summary>
+  <description>
+    <p>
+      Sphinx-generated HTML documentation for mcprack, a catalog and
+      client-configuration portal for MCP (Model Context Protocol) servers.
+    </p>
+    <p>
+      Covers installation, security (two-factor authentication, audit trail),
+      the REST API and CLI, Claude Code integration, the client sync tools,
+      the Ansible collection and the MCP servers with a mcprack companion package.
+    </p>
+  </description>
+  <url type="homepage">https://mcprack.readthedocs.io/</url>
+  <url type="bugtracker">https://github.com/VitexSoftware/mcprack-doc-en/issues</url>
+  <url type="vcs-browser">https://github.com/VitexSoftware/mcprack-doc-en</url>
+  <developer id="cz.vitexsoftware">
+    <name>VitexSoftware</name>
+  </developer>
+  <content_rating type="oars-1.1"/>
+</component>
