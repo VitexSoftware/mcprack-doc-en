@@ -1,29 +1,33 @@
-The relay and its credentials
-=============================
+Aggregate endpoint and individual relays
+========================================
 
-Every selected server is exposed to a client as a relay URL. There are two forms.
+Generated client configurations contain one per-user FastMCP composition URL.
+It exposes tools, resources and prompts from the user's currently selected,
+enabled and permitted servers. Components are namespaced by server name. Each
+server also has an individual relay URL, shown on its detail card when the user
+may access and has selected it.
 
-Path token (default)
+Aggregate path token (default)
+------------------------------
+
+.. code-block:: text
+
+  https://mcprack.example.com/proxy/mcp/aggregate/<token>
+
+The token is signed and scoped to one user. It *is* the credential, so a file
+that contains it must be treated like a password. Tokens carry a version:
+``mcprack user revoke-tokens`` and account disablement invalidate them.
+``PROXY_TOKEN_MAX_AGE_SECONDS`` gives new tokens a lifetime.
+
+The ``claude``, ``cursor``, ``copilot`` and ``vscode`` client formats use this
+form.
+
+Aggregate Bearer URL
 --------------------
 
 .. code-block:: text
 
-   https://mcprack.example.com/proxy/mcp/<token>/<server_id>
-
-``<token>`` is a signed, per-user value. It *is* the credential, so a file that
-contains it must be treated like a password. Tokens carry a version: changing the
-user's token version (``mcprack user revoke-tokens``, disabling the account) kills
-every URL at once. ``PROXY_TOKEN_MAX_AGE_SECONDS`` gives new tokens a lifetime;
-fresh installations default to 90 days.
-
-Used by the ``claude``, ``cursor``, ``copilot`` and ``vscode`` client formats.
-
-Bearer (no secret in the URL)
------------------------------
-
-.. code-block:: text
-
-   https://mcprack.example.com/proxy/mcp/<server_id>
+  https://mcprack.example.com/proxy/mcp/aggregate
    Authorization: Bearer <credential>
 
 The credential is one of:
@@ -33,10 +37,27 @@ The credential is one of:
 - an **OAuth access token** issued by mcprack when ``OAUTH_ENABLED=true``
   (:doc:`../howto/enable-oauth`).
 
-This is the form of the ``claude-code`` format: the URL can be committed to a
-repository because it contains no secret.
+The ``claude-code`` format uses this form: the URL can be committed because it
+contains no secret.
 
-Without a credential the route answers ``401`` with ``WWW-Authenticate: Bearer``.
+Individual server URLs
+----------------------
+
+The server detail card shows a permitted, enabled and selected server's URL:
+
+.. code-block:: text
+
+  https://mcprack.example.com/proxy/mcp/<token>/<server_id>
+  https://mcprack.example.com/proxy/mcp/<server_id>
+
+The first form uses a signed per-server token; the second uses a Bearer
+credential. Both routes recheck the user's current permission and selection.
+The composition process also connects to these relays, so backend credentials
+remain server-side.
+
+Without a credential the aggregate route answers ``401`` with
+``WWW-Authenticate: Bearer``. With OAuth enabled, Protected Resource Metadata is
+available at ``/.well-known/oauth-protected-resource/proxy/mcp/aggregate``.
 
 API tokens
 ----------
@@ -65,7 +86,7 @@ never be more powerful or longer-lived than its creator.
    * - ``tokens:manage``
      - Create and revoke tokens
    * - ``proxy:access``
-     - Use the Bearer relay route
+     - Use the aggregate or individual Bearer relay route
    * - ``admin:read`` / ``admin:write``
      - Call the admin REST API (administrators only)
    * - ``*``, or no scope list

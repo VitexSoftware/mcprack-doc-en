@@ -82,7 +82,7 @@ The essentials:
 Allow at least 60 seconds of read timeout for the proxy, and do not let an nginx
 in front buffer ``text/event-stream`` answers (mcprack sets ``X-Accel-Buffering:
 no``). If the proxy runs on a different host, change ``GUNICORN_BIND`` and restrict
-the port to that host.
+the port to that host (:doc:`../howto/change-listen-address`).
 
 fail2ban
 --------

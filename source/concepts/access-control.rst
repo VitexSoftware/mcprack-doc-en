@@ -13,18 +13,29 @@ Three separate things decide what a user sees:
    * - Concept
      - Meaning
    * - Enabled
-     - Administrator-level switch of a server. A disabled server is hidden from
-       everybody.
+     - Administrator-level switch of a server. A disabled server cannot be
+       selected or reached; its information card remains visible to signed-in
+       users.
    * - Permission
      - Whether a user *may* use a server (an allow or deny row per user and
        server).
    * - Selection
-     - The servers a user *chose* to include in their generated configuration.
+     - The servers a user *chose* to include in their aggregate endpoint.
 
 With ``STRICT_SERVER_PERMISSIONS=true`` (the default) a user with no permission
-rows sees **no** server: access is explicit. This matters because an LDAP account
-is created on first login for anybody the directory authenticates. Set it to
+rows has no usable servers: access is explicit. Users can still browse server
+cards and request permission. This matters because an LDAP account is created on
+first login for anybody the directory authenticates. Set it to
 ``false`` only on a trusted network where everybody may use everything.
+
+Requesting access
+-----------------
+
+A user who is not permitted to use an enabled server can submit an access request
+from its detail card. Administrators review pending requests under *Admin →
+Access Requests*. Approval grants the permission but does not add the server to
+the user's subscriptions; the user chooses it on the *MCP servers* page. A denied
+request can be submitted again later.
 
 Templates
 ---------

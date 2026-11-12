@@ -20,7 +20,8 @@ server in the catalog (see :doc:`servers/companion-packages`).
 2. Open the portal
 ------------------
 
-mcprack listens on ``127.0.0.1:8912`` only. Put a TLS reverse proxy in front of
+mcprack listens on ``127.0.0.1:8912`` only (to change that, see
+:doc:`howto/change-listen-address`). Put a TLS reverse proxy in front of
 it (see :doc:`security/internet-checklist` for a ready Apache vhost) and set the
 public address:
 
@@ -33,18 +34,21 @@ public address:
 Sign in as ``admin``. Administrators must set up two-factor authentication
 before they can use the admin area (:doc:`security/two-factor`).
 
-3. Pick a server and connect Claude Code
-----------------------------------------
+3. Subscribe to a server and connect Claude Code
+------------------------------------------------
 
-1. In the catalog, tick *Filesystem MCP Server* and save.
-2. Create an API token with the scope ``proxy:access`` (user menu → API tokens).
-3. On your workstation:
+1. Open *MCP servers*, subscribe to *Filesystem MCP Server*, and save. If the
+   administrator has not allowed access, open its card and request access.
+2. Return to the overview. It shows the aggregate URL and the servers available
+   through it.
+3. Create an API token with the scope ``proxy:access`` (user menu → API tokens).
+4. On your workstation:
 
 .. code-block:: bash
 
    export MCPRACK_TOKEN=mcr_...
-   claude mcp add --transport http --scope user filesystem \
-       https://mcprack.example.com/proxy/mcp/1 \
+      claude mcp add --transport http --scope user mcprack \
+         https://mcprack.example.com/proxy/mcp/aggregate \
        --header "Authorization: Bearer $MCPRACK_TOKEN"
 
 The exact commands for your servers are shown on the *View & Copy* page of the
@@ -57,8 +61,9 @@ The exact commands for your servers are shown on the *View & Copy* page of the
 
    sudo mcprack user config verify alice claude-code
 
-The command does what the client will do (``initialize`` then ``tools/list``) for
-every URL in the configuration and prints one line per server.
+The command does what the client will do (``initialize`` then ``tools/list``)
+against the aggregate endpoint. Use ``--server filesystem`` to probe one
+subscribed server through its individual relay.
 
 Next steps
 ----------

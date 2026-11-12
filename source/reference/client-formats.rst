@@ -2,7 +2,8 @@ Client configuration formats
 ============================
 
 ``GET /api/v1/me/config/{client}``, ``/download/{client}`` and ``/view/{client}``
-render the same selection in the format of each client.
+render one aggregate MCP endpoint in the format of each client. The endpoint
+exposes the user's enabled, permitted and selected servers under namespaces.
 
 .. list-table::
    :header-rows: 1
@@ -29,11 +30,11 @@ render the same selection in the format of each client.
      - ``servers``
      - Signed token in the URL path
 
-An entry for a network server looks like:
+The generated entry is named ``mcprack``. For example:
 
 .. code-block:: json
 
-   { "type": "http", "url": "https://mcprack.example.com/proxy/mcp/<token>/8" }
+  { "type": "http", "url": "https://mcprack.example.com/proxy/mcp/aggregate/<token>" }
 
 mcprack always renders a server as a network entry with its relay URL, whatever the
 backend's real transport is: clients never receive a command to run. (A local

@@ -10,9 +10,9 @@ Components
                                                               │
          ┌────────────────────────────────────────────────────┼────────────────────┐
          ▼                       ▼                            ▼                    ▼
-     database               secret store                per-user fastmcp      network backends
-   (users, servers,    (Vaultwarden via bw,            processes (loopback,   (relayed, credentials
-    ACL, audit)         or encrypted local store)       one per user+server)   injected)
+     database               secret store              per-user FastMCP       per-server relays
+   (users, servers,    (Vaultwarden via bw,          composition process  (stdio processes and
+    ACL, requests)      or encrypted local store)       (loopback)          network backends)
 
 - **The web application** serves the portal (``/``), the admin area (``/admin``),
   the REST API (``/api/v1``) and the MCP relay (``/proxy/mcp``).
@@ -20,23 +20,24 @@ Components
   templates, API and OAuth tokens, login throttling state and the audit trail.
 - **The secret store** holds backend credentials, either in Vaultwarden (through
   the ``bw`` CLI) or encrypted locally with a key derived from ``SECRET_KEY``.
-- **Per-user processes**: for a server with a ``command``, mcprack starts a
-  ``fastmcp`` process bound to ``127.0.0.1`` for that (user, server) pair on the
-  first request and stops it after 15 idle minutes.
+- **Per-user composition**: mcprack starts a ``fastmcp`` composition process
+  bound to ``127.0.0.1`` for the user. It mounts signed per-server relay URLs
+  under stable namespaces and stops after 15 idle minutes. Each stdio backend
+  still runs in its own per-user process.
 
 A request, step by step
 -----------------------
 
-1. The client calls ``POST /proxy/mcp/...`` with either a signed path token or an
-   ``Authorization: Bearer`` header (:doc:`relay-and-tokens`).
-2. mcprack resolves the user, checks that the account is active, that the server
-   is enabled and that the user selected it and may use it.
-3. It resolves the credentials for that user (shared values plus the user's own
-   overrides) from the secret store.
-4. For a ``command`` server it ensures the per-user process is running; for a
-   ``url`` server it opens a connection to the backend.
-5. It forwards the request (only protocol headers cross the relay), and streams
-   or returns the answer (only protocol headers come back).
+1. The client calls ``/proxy/mcp/aggregate`` with either a user-scoped signed
+   path token or an ``Authorization: Bearer`` header
+   (:doc:`relay-and-tokens`).
+2. mcprack resolves the user and rebuilds the composition from the user's
+   currently selected, enabled and permitted servers.
+3. The composition mounts each server's signed per-server relay under a
+   namespace derived from its name.
+4. The per-server relay checks access again, resolves credentials, starts a
+   per-user process for a ``command`` server or connects to a network ``url``.
+5. Requests and responses cross both relays with only MCP protocol headers.
 
 Failure handling
 ----------------

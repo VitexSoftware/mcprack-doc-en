@@ -21,6 +21,11 @@ Allow servers
    sudo mcprack user server deny alice zabbix
    sudo mcprack user server list alice
 
+Users can also request access from a denied server's detail card. Review pending
+requests under *Admin → Access Requests*. Approving a request allows that user to
+use the server but does not subscribe them automatically; they must select it on
+the *MCP servers* page. A denied request can be submitted again later.
+
 Pre-select servers for a user (what ends up in their generated configuration):
 
 .. code-block:: bash

@@ -28,7 +28,8 @@ Core
    * - ``TRUSTED_HOSTS``
      - Further accepted host names (comma separated)
    * - ``GUNICORN_BIND``
-     - (``127.0.0.1:8912``) Where gunicorn listens
+     - (``127.0.0.1:8912``) Where gunicorn listens; to change it per host see
+       :doc:`../howto/change-listen-address`
    * - ``GUNICORN_THREADS``
      - (``8``) Threads per worker
    * - ``SESSION_COOKIE_SECURE``

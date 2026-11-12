@@ -10,12 +10,16 @@ Welcome to mcprack's documentation!
 
 **mcprack** is a catalog and client-configuration portal for `MCP
 <https://modelcontextprotocol.io/>`_ (Model Context Protocol) servers. An
-administrator registers MCP servers once; every user picks the ones they need and
-gets a ready-to-use configuration for Claude Desktop, Claude Code, Cursor or VS
-Code. Clients never start a local process and never see a backend credential:
-they talk to a per-user relay URL on the mcprack server.
+administrator registers MCP servers once; every user gets one aggregate MCP URL
+for their permitted subscriptions and a ready-to-use configuration for Claude
+Desktop, Claude Code, Cursor or VS Code. Users can browse all registered servers
+and request access from an administrator. Clients never start a local process
+and never see a backend credential: they talk to a per-user FastMCP composition
+endpoint on the mcprack server.
 
-**Version 1.7.0** adds two-factor authentication (required for administrators),
+**Version 1.8.0** adds a per-user FastMCP composition endpoint, aggregate client
+configurations, server subscription requests and a separate server discovery
+page. It also includes two-factor authentication (required for administrators),
 fresh re-authentication for dangerous administrator actions, a tamper-evident
 audit mirror, command and URL policies, classified start-up diagnostics,
 ``mcprack user config verify`` and a secret-free Claude Code configuration format.
@@ -25,8 +29,10 @@ Key Features
 
 - **One catalog, many clients**: generated configuration for Claude Desktop,
   Claude Code, Cursor and VS Code / GitHub Copilot.
-- **Per-user relay**: stdio MCP servers run as per-user ``fastmcp`` processes on
-  the mcprack host; network servers are relayed. Users receive one URL per server.
+- **One aggregate endpoint**: the per-user FastMCP composition exposes tools,
+  resources and prompts from subscribed servers under stable namespaces.
+- **Per-server access**: users browse the registry, request denied access, and
+  can copy an individual relay URL from a permitted server's detail card.
 - **Credentials stay on the server**: shared credentials live in Vaultwarden or in
   an encrypted local store, and are injected when a request arrives. Users can
   override individual values for themselves.
@@ -99,6 +105,7 @@ Contents
    howto/connect-other-clients
    howto/enable-oauth
    howto/verify-config
+   howto/change-listen-address
    howto/rotate-secret-key
    howto/monitoring
 

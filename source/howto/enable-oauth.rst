@@ -12,9 +12,10 @@ Bearer tokens instead of a secret in a URL.
 
 mcprack then serves the discovery documents (``/.well-known/oauth-protected-resource``,
 ``/.well-known/oauth-authorization-server``) and the endpoints ``/oauth/authorize``,
-``/oauth/token``, ``/oauth/register`` and ``/oauth/revoke``. The relay URL becomes
-``/proxy/mcp/<server_id>`` and answers ``401`` with a challenge that points clients
-at the discovery document. Path-token URLs keep working.
+``/oauth/token``, ``/oauth/register`` and ``/oauth/revoke``. Generated configs use
+``/proxy/mcp/aggregate``; it answers ``401`` with a challenge pointing to
+``/.well-known/oauth-protected-resource/proxy/mcp/aggregate``. Individual server
+cards use ``/proxy/mcp/<server_id>``. Path-token URLs keep working.
 
 Redirect policy
 ---------------

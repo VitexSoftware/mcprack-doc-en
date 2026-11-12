@@ -13,9 +13,9 @@ The generated file
 
    {
      "mcpServers": {
-       "zabbix": {
+          "mcprack": {
          "type": "http",
-         "url": "https://mcprack.example.com/proxy/mcp/8",
+             "url": "https://mcprack.example.com/proxy/mcp/aggregate",
          "headers": { "Authorization": "Bearer ${MCPRACK_TOKEN}" }
        }
      }
@@ -40,17 +40,18 @@ Step by step
 
       export MCPRACK_TOKEN=mcr_...
 
-3. **Add the servers**, either by saving the download as ``.mcp.json`` (project
-   scope; Claude Code asks each person to approve a project server once), or with
-   the commands from the *View & Copy* page:
+3. **Add the aggregate server**, either by saving the download as ``.mcp.json``
+   (project scope; Claude Code asks each person to approve a project server once),
+   or with the command from the *View & Copy* page:
 
    .. code-block:: bash
 
-      claude mcp add --transport http --scope user zabbix \
-          https://mcprack.example.com/proxy/mcp/8 \
+        claude mcp add --transport http --scope user mcprack \
+           https://mcprack.example.com/proxy/mcp/aggregate \
           --header "Authorization: Bearer $MCPRACK_TOKEN"
 
-4. In Claude Code run ``/mcp`` to see the status of each server.
+   4. In Claude Code run ``/mcp`` to see the aggregate connection. Its tools,
+      resources and prompts are namespaced by MCP server name.
 
 With OAuth enabled
 ------------------

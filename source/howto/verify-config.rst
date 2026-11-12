@@ -5,8 +5,8 @@ Verifying a configuration
 
    sudo mcprack user config verify USERNAME [CLIENT]
 
-``CLIENT`` defaults to ``claude-code``. For every server in the user's generated
-configuration the command does what an MCP client will do:
+``CLIENT`` defaults to ``claude-code``. By default the command checks the user's
+aggregate endpoint, doing what an MCP client will do:
 
 1. ``initialize`` (asking for protocol 2025-06-18),
 2. ``notifications/initialized``,
@@ -16,9 +16,8 @@ and prints one line per server:
 
 .. code-block:: text
 
-   OK    zabbix: 12 tool(s), protocol 2025-06-18, 1.4s
-   FAIL  netbox: initialize: HTTP 502 ...
-   2 server(s) verified.
+   OK    mcprack: 12 tool(s), protocol 2025-06-18, 1.4s
+   All 1 server(s) verified.
 
 The exit status is 0 only if every server answered with tools. The probe goes
 through the same path as a real client — the reverse proxy and TLS, authentication,
@@ -32,10 +31,12 @@ Options
    to test mcprack itself without the reverse proxy and find which hop breaks.
 
 ``--server NAME``
-   Check only this server (repeatable).
+   Check only this selected server through its individual relay (repeatable)
+   instead of checking the aggregate endpoint. The user must be permitted to use
+   and subscribed to that server.
 
 ``--timeout SECONDS``
-   Per-server limit; a cold start takes a while. Default 60.
+   Per-endpoint limit; a cold start takes a while. Default 60.
 
 ``--insecure``
    Allow sending the credential over plain ``http`` to a non-loopback host.
@@ -58,8 +59,8 @@ The stand-alone probe
 
 .. code-block:: bash
 
-   mcprack-mcp-probe https://mcprack.example.com/proxy/mcp/<token>/7
-   MCPRACK_TOKEN=... mcprack-mcp-probe --bearer --tools https://mcprack.example.com/proxy/mcp/7
+   mcprack-mcp-probe https://mcprack.example.com/proxy/mcp/aggregate/<token>
+   MCPRACK_TOKEN=... mcprack-mcp-probe --bearer --tools https://mcprack.example.com/proxy/mcp/aggregate
    mcprack-mcp-probe --call list_dir --args '{"path": "."}' URL
 
 ``--bearer`` reads the token from ``MCPRACK_TOKEN`` (never from the command line).

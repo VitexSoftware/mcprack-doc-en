@@ -24,6 +24,10 @@ Connecting other clients
 Download
 --------
 
+Each client configuration has one ``mcprack`` entry whose URL is the user's
+aggregate endpoint. It exposes only that user's enabled, permitted and selected
+servers.
+
 From the catalog use *Download Config* or *View & Copy*, or:
 
 .. code-block:: bash
@@ -36,8 +40,8 @@ From the catalog use *Download Config* or *View & Copy*, or:
 
 .. warning::
 
-   The ``claude``, ``cursor``, ``copilot`` and ``vscode`` formats carry the signed
-   path token inside every URL. The file is a credential: do not commit it.
+  The ``claude``, ``cursor``, ``copilot`` and ``vscode`` formats carry a signed
+  user token in the aggregate URL. The file is a credential: do not commit it.
 
 Keep it in sync
 ---------------
@@ -50,5 +54,6 @@ Claude Desktop remote servers
 
 Whether Claude Desktop accepts a remote ``url`` entry in
 ``claude_desktop_config.json`` depends on its version; on versions that do not,
-add the server in the application's connector dialog using the name and URL shown
-in the catalog (each selected server has a copy button).
+add the aggregate server in the application's connector dialog. To connect an
+individual MCP server instead, open its detail card and copy its permitted relay
+URL.
